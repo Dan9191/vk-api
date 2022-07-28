@@ -1,5 +1,6 @@
 package ru.dan.vkapi.service;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.dan.vkapi.entity.SearchingGroupEntity;
 import ru.dan.vkapi.model.Group;
@@ -62,8 +63,8 @@ public class SearchingGroupService {
      * Вывод деталей результата поисков.
      */
     @Transactional
-    public List<SearchingGroupDetails> findSearchingGroups() {
-        return groupRepository.findAllByOrderByTechDateResponse().stream()
+    public List<SearchingGroupDetails> findSearchingGroups(Pageable pageable) {
+        return groupRepository.findAllByOrderByTechDateResponse(pageable).stream()
                 .map(entity -> new SearchingGroupDetails.SearchingGroupBuilder()
                         .param(entity.getParam())
                         .result(entity.getResult())

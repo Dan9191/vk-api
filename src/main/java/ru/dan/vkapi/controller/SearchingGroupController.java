@@ -3,6 +3,8 @@ package ru.dan.vkapi.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,9 +65,9 @@ public class SearchingGroupController {
      */
     @GetMapping("/get_upload_details")
     @ApiOperation("Вывод информации о попытках поиска групп.")
-    public ResponseEntity getSearchResult() {
+    public ResponseEntity getSearchResult(@PageableDefault(size = 3) Pageable pageable) {
         try {
-            return ResponseEntity.ok().body(searchingGroupService.findSearchingGroups());
+            return ResponseEntity.ok().body(searchingGroupService.findSearchingGroups(pageable));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
