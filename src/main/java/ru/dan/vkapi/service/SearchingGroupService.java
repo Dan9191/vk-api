@@ -68,6 +68,7 @@ public class SearchingGroupService {
                 .map(entity -> new SearchingGroupDetails.SearchingGroupBuilder()
                         .param(entity.getParam())
                         .result(entity.getResult())
+                        .techDateResponse((entity.getTechDateResponse()))
                         .build()
                 )
                 .collect(Collectors.toList());

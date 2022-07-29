@@ -28,7 +28,11 @@ public class SearchingGroupDetails {
     public SearchingGroupDetails(SearchingGroupBuilder searchingGroupBuilder) {
         this.param = searchingGroupBuilder.getParam();
         this.result = searchingGroupBuilder.getResult();
-        this.techDateResponse = LocalDateTime.now();
+        if (searchingGroupBuilder.getTechDateResponse() == null) {
+            this.techDateResponse = LocalDateTime.now();
+        } else {
+            this.techDateResponse = searchingGroupBuilder.getTechDateResponse();
+        }
     }
 
     /**
@@ -38,6 +42,7 @@ public class SearchingGroupDetails {
     public static class SearchingGroupBuilder {
         private String param;
         private String result;
+        private LocalDateTime techDateResponse;
 
         public SearchingGroupBuilder() {
             super();
@@ -50,6 +55,11 @@ public class SearchingGroupDetails {
 
         public SearchingGroupBuilder result(String result) {
             this.result = result;
+            return this;
+        }
+
+        public SearchingGroupBuilder techDateResponse(LocalDateTime techDateResponse) {
+            this.techDateResponse = techDateResponse;
             return this;
         }
 
