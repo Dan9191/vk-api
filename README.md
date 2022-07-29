@@ -5,7 +5,8 @@
 2) Поиск по подстроке среди своих групп и групп друзей
    Post запрос http://localhost:8079/test/groups_search
 3) Вывод деталей поиска
-   Get запрос http://localhost:8079/test/get_upload_details
+   http://localhost:8079/test/get_upload_details?page=0&size=5
+   в переменной page указывается страница запроса, в size количество выводимых записей в странице
 
 Инструкция по запуску:
 
